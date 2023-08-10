@@ -2,6 +2,7 @@ package com.example.DepartmentPassport.model.dto;
 
 import com.example.DepartmentPassport.model.enums.clinicHR.Category;
 import com.example.DepartmentPassport.model.enums.clinicHR.ClinicHrStatus;
+import com.example.DepartmentPassport.model.enums.clinicHR.Position;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -16,8 +17,7 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ClinicHrRequest {
 
-    ClinicHrStatus clinicHrStatus;
-
+    Position position;
     String firstName;
     String lastName;
     String middleName;
