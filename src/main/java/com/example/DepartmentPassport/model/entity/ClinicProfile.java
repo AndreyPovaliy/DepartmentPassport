@@ -2,6 +2,7 @@ package com.example.DepartmentPassport.model.entity;
 
 import com.example.DepartmentPassport.model.enums.building.BuildingStatus;
 import com.example.DepartmentPassport.model.enums.clinic.ClinicStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,9 +29,10 @@ public class ClinicProfile {
     String webSite;
     String phone;
 
-    //    @ManyToOne
-//    @JsonBackReference(value="driver_cars")
-//    UserProfile userProfile;
+    @OneToMany
+    @JsonManagedReference(value="clinic_branches")
+    List <ClinicBranchProfile> clinicBranchProfileList;
+
 
     @Column(name = "created_at")
     LocalDateTime createdAt;

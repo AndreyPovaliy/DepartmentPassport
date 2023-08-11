@@ -4,8 +4,6 @@ import com.example.DepartmentPassport.exceptions.CustomException;
 import com.example.DepartmentPassport.model.dto.ClinicHrRequest;
 import com.example.DepartmentPassport.model.dto.ClinicHrResponse;
 import com.example.DepartmentPassport.model.entity.ClinicHrProfile;
-import com.example.DepartmentPassport.model.entity.ClinicProfile;
-import com.example.DepartmentPassport.model.enums.clinic.ClinicStatus;
 import com.example.DepartmentPassport.model.enums.clinicHR.ClinicHrStatus;
 import com.example.DepartmentPassport.model.repositories.ClinicHrProfileRepo;
 import com.example.DepartmentPassport.service.ClinicHrService;

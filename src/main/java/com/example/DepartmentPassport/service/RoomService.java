@@ -5,7 +5,7 @@ import com.example.DepartmentPassport.model.dto.RoomRequest;
 import com.example.DepartmentPassport.model.dto.RoomResponse;
 
 public interface RoomService {
-    RoomResponse roomResponse (RoomRequest roomRequest);
+
     RoomResponse createRoom(RoomRequest roomRequest);
 
     RoomResponse getRoom (Long id);
