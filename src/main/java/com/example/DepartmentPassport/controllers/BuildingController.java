@@ -3,10 +3,12 @@ package com.example.DepartmentPassport.controllers;
 import com.example.DepartmentPassport.model.dto.BuildingRequest;
 import com.example.DepartmentPassport.model.dto.BuildingResponse;
 import com.example.DepartmentPassport.service.BuildingService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-//@Tag(name="building")
+@Tag(name="building")
 @RestController
 @RequestMapping("/building")
 @RequiredArgsConstructor
@@ -15,27 +17,27 @@ public class BuildingController {
 
 
     @PostMapping
-//    @Operation (summary = "create Building")
+    @Operation(summary = "create Building")
     public BuildingResponse createBuilding(@RequestBody BuildingRequest buildingRequest) {
 
         return buildingService.createBuilding(buildingRequest);
     }
 
     @GetMapping("/{id}")
-//    @Operation (summary = "get Building")
+    @Operation (summary = "get Building")
     public BuildingResponse readBuilding(@PathVariable Long id) {
 
         return buildingService.getBuilding(id);
     }
 
     @PutMapping("/{id}")
-//    @Operation (summary = "update Building")
+    @Operation (summary = "update Building")
     public BuildingResponse updateBuilding(@PathVariable Long id, @RequestBody BuildingRequest buildingRequest) {
         return buildingService.updateBuilding(id, buildingRequest);
     }
 
     @DeleteMapping
-//    @Operation (summary = "delete Building")
+    @Operation (summary = "delete Building")
     public void deleteBuilding(@PathVariable Long id) {
 
         buildingService.deleteBuilding(id);

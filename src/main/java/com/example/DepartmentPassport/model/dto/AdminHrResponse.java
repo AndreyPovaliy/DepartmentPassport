@@ -1,6 +1,7 @@
 package com.example.DepartmentPassport.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,4 +13,7 @@ import lombok.experimental.FieldDefaults;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AdminHrResponse extends  AdminHrRequest{
     Long id;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    DepartmentResponse departmentResponse;
 }

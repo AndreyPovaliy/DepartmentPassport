@@ -1,6 +1,7 @@
 package com.example.DepartmentPassport.model.entity;
 
 import com.example.DepartmentPassport.model.enums.adminHR.AdminHrStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,9 +31,9 @@ public class AdminHrProfile {
     String middleName;
     String phone;
 
-//    @ManyToOne
-//    @JsonBackReference(value="driver_cars")
-//    UserProfile userProfile;
+    @ManyToOne
+    @JsonBackReference(value="department_adminHr")
+    DepartmentProfile departmentProfile;
 
     @Column (name = "created_at")
     LocalDateTime createdAt;

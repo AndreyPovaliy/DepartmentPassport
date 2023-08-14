@@ -4,6 +4,7 @@ package com.example.DepartmentPassport.model.entity;
 import com.example.DepartmentPassport.model.enums.clinicHR.Category;
 import com.example.DepartmentPassport.model.enums.clinicHR.ClinicHrStatus;
 import com.example.DepartmentPassport.model.enums.clinicHR.Position;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,9 +39,9 @@ public class ClinicHrProfile {
     @Column(name = "date_accreditation")
     Date dateAccreditation;
 
-    //    @ManyToOne
-//    @JsonBackReference(value="driver_cars")
-//    UserProfile userProfile;
+    @ManyToOne
+    @JsonBackReference(value="department_clinicHr")
+    DepartmentProfile departmentProfile;
 
     @Column(name = "created_at")
     LocalDateTime createdAt;

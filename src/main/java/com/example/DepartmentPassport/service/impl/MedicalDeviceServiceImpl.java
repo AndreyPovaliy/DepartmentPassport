@@ -11,6 +11,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -74,5 +76,15 @@ public class MedicalDeviceServiceImpl implements MedicalDeviceService {
 
         medicalDeviceProfileRepo.save(medicalDevice);
 
+    }
+
+    @Override
+    public MedicalDeviceResponse addMedicalDeviceToDepartment(Long adminHrId, Long departmentId) {
+        return null;
+    }
+
+    @Override
+    public Page<MedicalDeviceResponse> getAllMedicalDevices(Integer page, Integer perPage, String sort, Sort.Direction order, String filter) {
+        return null;
     }
 }

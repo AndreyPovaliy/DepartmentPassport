@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -73,5 +75,23 @@ public class ClinicServiceImpl implements ClinicService {
 
         clinicProfileRepo.save(clinic);
 
+    }
+
+    @Override
+    public ClinicProfile getClinicProfile(Long id) {
+        return clinicProfileRepo.findById(id)
+                .orElseThrow(() -> new CustomException("Clinic is not found", HttpStatus.NOT_FOUND));
+    }
+    @Override
+    public void updateClinicBranchList(ClinicProfile clinicProfile) {
+        clinicProfileRepo.save(clinicProfile);
+    }
+
+    @Override
+    public List<ClinicResponse> getAllClinics() {
+        return clinicProfileRepo.findAll().stream()
+                .filter(u -> u.getClinicStatus() != ClinicStatus.DELETED)
+                .map(u -> mapper.convertValue(u, ClinicResponse.class))
+                .collect(Collectors.toList());
     }
 }

@@ -1,7 +1,10 @@
 package com.example.DepartmentPassport.service;
 
+import com.example.DepartmentPassport.model.dto.AdminHrResponse;
 import com.example.DepartmentPassport.model.dto.ClinicHrRequest;
 import com.example.DepartmentPassport.model.dto.ClinicHrResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 
 public interface ClinicHrService {
     ClinicHrResponse createClinicHr(ClinicHrRequest clinicHrRequest);
@@ -12,7 +15,8 @@ public interface ClinicHrService {
 
     void deleteClinicHr (Long id);
 
-//    Page<BuildingResponse> getAllHr (Integer page, Integer perPage, String sort, Sort.Direction order, String filter);
-//
-//    BuildingResponse addCarToUser(Long carId, Long userId);
+    ClinicHrResponse addClinicHrToDepartment(Long adminHrId, Long departmentId);
+
+    Page<ClinicHrResponse> getAllClinicHrs(Integer page, Integer perPage, String sort, Sort.Direction order, String filter);
+
 }
