@@ -3,17 +3,28 @@ package com.example.DepartmentPassport.service.impl;
 import com.example.DepartmentPassport.exceptions.CustomException;
 import com.example.DepartmentPassport.model.dto.BuildingRequest;
 import com.example.DepartmentPassport.model.dto.BuildingResponse;
+import com.example.DepartmentPassport.model.dto.ClinicResponse;
 import com.example.DepartmentPassport.model.entity.BuildingProfile;
+import com.example.DepartmentPassport.model.entity.ClinicProfile;
 import com.example.DepartmentPassport.model.enums.building.*;
 import com.example.DepartmentPassport.model.repositories.BuildingProfileRepo;
 import com.example.DepartmentPassport.service.BuildingService;
+import com.example.DepartmentPassport.service.ClinicService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.example.DepartmentPassport.utils.PaginationUtil.getPageRequest;
 
 @Slf4j
 @Service
@@ -21,6 +32,7 @@ import java.time.LocalDateTime;
 public class BuildingServiceImpl implements BuildingService {
     private final BuildingProfileRepo buildingProfileRepo;
     private final ObjectMapper mapper;
+    private final ClinicService clinicService;
 
 
     @Override
@@ -76,6 +88,38 @@ public class BuildingServiceImpl implements BuildingService {
         building.setUpdateAt(LocalDateTime.now());
 
         buildingProfileRepo.save(building);
+    }
+
+    @Override
+    public Page<BuildingResponse> getAllBuildings(Integer page, Integer perPage, String sort, Sort.Direction order, String filter) {
+
+        Pageable pageRequest = getPageRequest(page, perPage, sort, order);
+
+        Page<BuildingProfile> pageList = buildingProfileRepo.findAllNotDeleted(pageRequest);
+        List<BuildingResponse> responses = pageList.getContent().stream()
+                .map(c -> mapper.convertValue(c, BuildingResponse.class))
+                .collect(Collectors.toList());
+        return new PageImpl<>(responses);
 
     }
+
+    @Override
+    public BuildingResponse addBuildingToUser(Long carId, Long userId) {
+        BuildingProfile buildingProfile = getBuildingById(carId);
+        ClinicProfile clinicProfile = clinicService.getClinicProfile(userId);
+
+        clinicProfile.getBuildingProfiles().add(buildingProfile);
+        clinicService.updateBuildingList(clinicProfile);
+
+        buildingProfile.setClinicProfile(clinicProfile);
+        BuildingProfile save = buildingProfileRepo.save(buildingProfile);
+
+        BuildingResponse buildingResponse = mapper.convertValue(save, BuildingResponse.class);
+        ClinicResponse clinicResponse = mapper.convertValue(clinicProfile, ClinicResponse.class);
+        buildingResponse.setClinicResponse(clinicResponse);
+
+        return buildingResponse;
+    }
+
+
 }

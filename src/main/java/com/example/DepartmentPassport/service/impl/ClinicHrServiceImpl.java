@@ -3,20 +3,29 @@ package com.example.DepartmentPassport.service.impl;
 import com.example.DepartmentPassport.exceptions.CustomException;
 import com.example.DepartmentPassport.model.dto.ClinicHrRequest;
 import com.example.DepartmentPassport.model.dto.ClinicHrResponse;
+import com.example.DepartmentPassport.model.dto.DepartmentResponse;
 import com.example.DepartmentPassport.model.entity.ClinicHrProfile;
+import com.example.DepartmentPassport.model.entity.DepartmentProfile;
 import com.example.DepartmentPassport.model.enums.clinicHR.ClinicHrStatus;
 import com.example.DepartmentPassport.model.repositories.ClinicHrProfileRepo;
 import com.example.DepartmentPassport.service.ClinicHrService;
+import com.example.DepartmentPassport.service.DepartmentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.example.DepartmentPassport.utils.PaginationUtil.getPageRequest;
 
 
 @Slf4j
@@ -25,6 +34,8 @@ import java.time.LocalDateTime;
 public class ClinicHrServiceImpl implements ClinicHrService {
     private final ClinicHrProfileRepo clinicHrProfileRepo;
     private final ObjectMapper mapper;
+    private final DepartmentService departmentService;
+
     @Override
     public ClinicHrResponse createClinicHr(ClinicHrRequest clinicHrRequest) {
         ClinicHrProfile clinicHrProfile = mapper.convertValue(clinicHrRequest, ClinicHrProfile.class);
@@ -81,12 +92,31 @@ public class ClinicHrServiceImpl implements ClinicHrService {
     }
 
     @Override
-    public ClinicHrResponse addClinicHrToDepartment(Long adminHrId, Long departmentId) {
-        return null;
+    public ClinicHrResponse addClinicHrToDepartment(Long clinicHrId, Long departmentId) {
+        ClinicHrProfile clinicHrProfile = getClinicHrById(clinicHrId);
+        DepartmentProfile departmentProfile = departmentService.getDepartmentProfile(departmentId);
+
+        departmentProfile.getClinicHrProfiles().add(clinicHrProfile);
+        departmentService.updateClinicHrList(departmentProfile);
+
+        clinicHrProfile.setDepartmentProfile(departmentProfile);
+        ClinicHrProfile save = clinicHrProfileRepo.save(clinicHrProfile);
+
+        ClinicHrResponse clinicHrResponse = mapper.convertValue(save, ClinicHrResponse.class);
+        DepartmentResponse department = mapper.convertValue(departmentProfile, DepartmentResponse.class);
+        clinicHrResponse.setDepartmentResponse(department);
+
+        return clinicHrResponse;
     }
 
     @Override
     public Page<ClinicHrResponse> getAllClinicHrs(Integer page, Integer perPage, String sort, Sort.Direction order, String filter) {
-        return null;
+        Pageable pageRequest = getPageRequest(page, perPage, sort, order);
+
+        Page<ClinicHrProfile> pageList = clinicHrProfileRepo.findAllNotDeleted(pageRequest);
+        List<ClinicHrResponse> responses = pageList.getContent().stream()
+                .map(c -> mapper.convertValue(c, ClinicHrResponse.class))
+                .collect(Collectors.toList());
+        return new PageImpl<>(responses);
     }
 }

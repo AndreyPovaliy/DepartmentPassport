@@ -67,6 +67,10 @@ public class DepartmentProfile {
     @JsonManagedReference(value="department_room")
     List<RoomProfile> roomProfiles;
 
+    @OneToMany
+    @JsonManagedReference(value="department_drug")
+    List<DrugProfile> drugProfiles;
+
     @Column(name = "created_at")
     LocalDateTime createdAt;
 

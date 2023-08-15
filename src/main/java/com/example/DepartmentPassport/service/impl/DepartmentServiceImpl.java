@@ -104,6 +104,35 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public void updateClinicHrList(DepartmentProfile departmentProfile) {
+        departmentProfileRepo.save(departmentProfile);
+
+    }
+
+    @Override
+    public void updateEquipmentList(DepartmentProfile departmentProfile) {
+        departmentProfileRepo.save(departmentProfile);
+
+    }
+
+    @Override
+    public void updateMedicalDeviceList(DepartmentProfile departmentProfile) {
+        departmentProfileRepo.save(departmentProfile);
+
+    }
+
+    @Override
+    public void updateRoomList(DepartmentProfile departmentProfile) {
+        departmentProfileRepo.save(departmentProfile);
+
+    }
+
+    @Override
+    public void updateDrugList(DepartmentProfile departmentProfile) {
+        departmentProfileRepo.save(departmentProfile);
+    }
+
+    @Override
     public DepartmentResponse addDepartmentToBranch(Long departmentId, Long branchId) {
         DepartmentProfile departmentProfile = getDepartmentById(departmentId);
         ClinicBranchProfile clinicBranchProfile = clinicBranchService.getClinicBranchProfile(branchId);
@@ -132,8 +161,6 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .collect(Collectors.toList());
         return new PageImpl<>(responses);
     }
-
-    
 
 
 }

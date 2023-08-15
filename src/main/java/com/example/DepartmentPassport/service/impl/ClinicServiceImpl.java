@@ -88,6 +88,12 @@ public class ClinicServiceImpl implements ClinicService {
     }
 
     @Override
+    public void updateBuildingList(ClinicProfile clinicProfile) {
+        clinicProfileRepo.save(clinicProfile);
+
+    }
+
+    @Override
     public List<ClinicResponse> getAllClinics() {
         return clinicProfileRepo.findAll().stream()
                 .filter(u -> u.getClinicStatus() != ClinicStatus.DELETED)

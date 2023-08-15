@@ -19,11 +19,10 @@ public interface ClinicService {
 
     void updateClinicBranchList(ClinicProfile clinicProfile);
 
+    void updateBuildingList(ClinicProfile clinicProfile);
+
     List<ClinicResponse> getAllClinics();
 
 
 
-//    Page<BuildingResponse> getAllBuilding (Integer page, Integer perPage, String sort, Sort.Direction order, String filter);
-//
-//    BuildingResponse addCarToUser(Long carId, Long userId);
 }

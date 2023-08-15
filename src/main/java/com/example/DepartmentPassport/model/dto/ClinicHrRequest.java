@@ -1,7 +1,6 @@
 package com.example.DepartmentPassport.model.dto;
 
 import com.example.DepartmentPassport.model.enums.clinicHR.Category;
-import com.example.DepartmentPassport.model.enums.clinicHR.ClinicHrStatus;
 import com.example.DepartmentPassport.model.enums.clinicHR.Position;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;

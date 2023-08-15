@@ -1,7 +1,7 @@
 package com.example.DepartmentPassport.model.entity;
 
-import com.example.DepartmentPassport.model.enums.adminHR.AdminHrStatus;
 import com.example.DepartmentPassport.model.enums.building.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,11 +38,9 @@ public class BuildingProfile {
     @Column(name = "telephone_connection")
     TelephoneConnection telephoneConnection;
 
-
-
-    //    @ManyToOne
-//    @JsonBackReference(value="driver_cars")
-//    UserProfile userProfile;
+    @ManyToOne
+    @JsonBackReference(value="clinic_buildings")
+    ClinicProfile clinicProfile;
 
     @Column(name = "created_at")
     LocalDateTime createdAt;

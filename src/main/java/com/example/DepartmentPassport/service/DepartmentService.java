@@ -21,6 +21,16 @@ public interface DepartmentService {
 
     void updateAdminHrList(DepartmentProfile departmentProfile);
 
+    void updateClinicHrList(DepartmentProfile departmentProfile);
+
+    void updateEquipmentList(DepartmentProfile departmentProfile);
+
+    void updateMedicalDeviceList(DepartmentProfile departmentProfile);
+
+    void updateRoomList(DepartmentProfile departmentProfile);
+
+    void updateDrugList(DepartmentProfile departmentProfile);
+
     DepartmentResponse addDepartmentToBranch(Long departmentId, Long branchId);
 
     Page<DepartmentResponse> getAllDepartments(Integer page, Integer perPage, String sort, Sort.Direction order, String filter);

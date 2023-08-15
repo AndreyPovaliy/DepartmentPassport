@@ -15,7 +15,7 @@ public interface EquipmentService {
 
     void deleteEquipment (Long id);
 
-    EquipmentResponse addEquipmentToDepartment(Long adminHrId, Long departmentId);
+    EquipmentResponse addEquipmentToDepartment(Long equipmentId, Long departmentId);
 
     Page<EquipmentResponse> getAllEquipments(Integer page, Integer perPage, String sort, Sort.Direction order, String filter);
 

@@ -1,7 +1,6 @@
 package com.example.DepartmentPassport.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

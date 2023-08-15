@@ -1,9 +1,10 @@
 package com.example.DepartmentPassport.model.entity;
 
-import com.example.DepartmentPassport.model.enums.building.BuildingStatus;
+
 import com.example.DepartmentPassport.model.enums.room.RoomStatus;
 import com.example.DepartmentPassport.model.enums.room.TypeRoom;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,4 +40,8 @@ public class RoomProfile {
 
     @Enumerated
     RoomStatus roomStatus;
+
+    @OneToMany
+    @JsonManagedReference(value="room_inventories")
+    List<InventoryProfile> inventoryProfiles;
 }

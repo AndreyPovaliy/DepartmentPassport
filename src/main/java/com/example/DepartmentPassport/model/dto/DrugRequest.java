@@ -1,19 +1,29 @@
 package com.example.DepartmentPassport.model.dto;
 
+import com.example.DepartmentPassport.model.enums.drug.ReleaseForm;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InventoryResponse extends InventoryRequest {
-    Long id;
+public class DrugRequest {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    RoomResponse roomResponse;
+
+    String tradeName;
+    String workingSubstance;
+    ReleaseForm releaseForm;
+    Integer packingVolume;
+    String measure;
+    Date productionDate;
+    Date bestBeforeDate;
+
+
+
 }

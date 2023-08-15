@@ -1,6 +1,5 @@
 package com.example.DepartmentPassport.model.entity;
 
-import com.example.DepartmentPassport.model.enums.building.BuildingStatus;
 import com.example.DepartmentPassport.model.enums.clinic.ClinicStatus;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
@@ -32,6 +31,10 @@ public class ClinicProfile {
     @OneToMany
     @JsonManagedReference(value="clinic_branches")
     List <ClinicBranchProfile> clinicBranchProfileList;
+
+    @OneToMany
+    @JsonManagedReference (value="clinic_buildings")
+    List<BuildingProfile> buildingProfiles;
 
 
     @Column(name = "created_at")

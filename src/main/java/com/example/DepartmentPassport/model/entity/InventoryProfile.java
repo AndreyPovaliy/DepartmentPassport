@@ -1,7 +1,7 @@
 package com.example.DepartmentPassport.model.entity;
 
-import com.example.DepartmentPassport.model.enums.building.BuildingStatus;
 import com.example.DepartmentPassport.model.enums.inventory.InventoryStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,9 +29,9 @@ public class InventoryProfile {
     @Column(name = "life_time")
     Integer lifeTime;
 
-    //    @ManyToOne
-//    @JsonBackReference(value="driver_cars")
-//    UserProfile userProfile;
+    @ManyToOne
+    @JsonBackReference(value="room_inventories")
+    RoomProfile roomProfile;
 
     @Column(name = "created_at")
     LocalDateTime createdAt;

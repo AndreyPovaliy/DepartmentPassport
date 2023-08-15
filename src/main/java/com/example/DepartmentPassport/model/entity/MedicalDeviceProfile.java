@@ -1,6 +1,5 @@
 package com.example.DepartmentPassport.model.entity;
 
-import com.example.DepartmentPassport.model.enums.building.BuildingStatus;
 import com.example.DepartmentPassport.model.enums.medicalDevice.MedicalDeviceStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;

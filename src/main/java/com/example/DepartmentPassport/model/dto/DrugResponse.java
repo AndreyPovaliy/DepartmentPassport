@@ -11,9 +11,10 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class InventoryResponse extends InventoryRequest {
+public class DrugResponse extends DrugRequest{
+
     Long id;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    RoomResponse roomResponse;
+    DepartmentResponse departmentResponse;
 }

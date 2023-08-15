@@ -15,7 +15,7 @@ public interface MedicalDeviceService {
 
     void deleteMedicalDevice(Long id);
 
-    MedicalDeviceResponse addMedicalDeviceToDepartment(Long adminHrId, Long departmentId);
+    MedicalDeviceResponse addMedicalDeviceToDepartment(Long medicalDeviceId, Long departmentId);
 
     Page<MedicalDeviceResponse> getAllMedicalDevices(Integer page, Integer perPage, String sort, Sort.Direction order, String filter);
 

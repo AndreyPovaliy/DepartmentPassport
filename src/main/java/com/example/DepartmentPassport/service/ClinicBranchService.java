@@ -16,7 +16,6 @@ public interface ClinicBranchService {
 
     void deleteClinicBranch (Long id);
 
-
     ClinicBranchProfile getClinicBranchProfile(Long id);
 
     ClinicBranchResponse addBranchToClinic(Long branchId, Long clinicId);

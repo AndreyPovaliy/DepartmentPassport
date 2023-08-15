@@ -2,6 +2,8 @@ package com.example.DepartmentPassport.service;
 
 import com.example.DepartmentPassport.model.dto.InventoryRequest;
 import com.example.DepartmentPassport.model.dto.InventoryResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 
 public interface InventoryService {
     InventoryResponse createInventory(InventoryRequest inventoryRequest);
@@ -12,7 +14,8 @@ public interface InventoryService {
 
     void deleteInventory (Long id);
 
-//    Page<BuildingResponse> getAllBuilding (Integer page, Integer perPage, String sort, Sort.Direction order, String filter);
-//
-//    BuildingResponse addCarToUser(Long carId, Long userId);
+
+    InventoryResponse addInventoryToRoom(Long inventoryId, Long roomId);
+
+    Page<InventoryResponse> getAllInventories(Integer page, Integer perPage, String sort, Sort.Direction order, String filter);
 }
