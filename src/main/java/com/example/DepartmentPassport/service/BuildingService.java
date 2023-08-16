@@ -18,4 +18,6 @@ public interface BuildingService {
     Page<BuildingResponse> getAllBuildings(Integer page, Integer perPage, String sort, Sort.Direction order, String filter);
 
     BuildingResponse addBuildingToClinic(Long buildingId, Long clinicId);
+
+
 }

@@ -103,8 +103,10 @@ public class BuildingServiceImpl implements BuildingService {
 
     }
 
+
+
     @Override
-    public BuildingResponse addBuildingToUser(Long carId, Long userId) {
+    public BuildingResponse addBuildingToClinic(Long carId, Long userId) {
         BuildingProfile buildingProfile = getBuildingById(carId);
         ClinicProfile clinicProfile = clinicService.getClinicProfile(userId);
 

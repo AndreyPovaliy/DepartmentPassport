@@ -10,9 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name="Drug")
+@Tag(name="drug")
 @RestController
-@RequestMapping("/Drug")
+@RequestMapping("/drug")
 @RequiredArgsConstructor
 public class DrugController {
     private final DrugService drugService;

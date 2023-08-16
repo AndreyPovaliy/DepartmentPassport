@@ -10,9 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name="ClinicHr")
+@Tag(name="inventory")
 @RestController
-@RequestMapping("/ClinicHr")
+@RequestMapping("/inventory")
 @RequiredArgsConstructor
 public class InventoryController {
     private final InventoryService inventoryService;

@@ -13,9 +13,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 
-@Tag(name="ClinicHr")
+@Tag(name="clinicHr")
 @RestController
-@RequestMapping("/ClinicHr")
+@RequestMapping("/clinicHr")
 @RequiredArgsConstructor
 public class ClinicHrController {
     private final ClinicHrService clinicHrService;

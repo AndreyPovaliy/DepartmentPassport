@@ -10,9 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name="ClinicHr")
+@Tag(name="department")
 @RestController
-@RequestMapping("/ClinicHr")
+@RequestMapping("/department")
 @RequiredArgsConstructor
 public class DepartmentController {
     private final DepartmentService departmentService;
@@ -24,6 +24,7 @@ public class DepartmentController {
 
         return departmentService.createDepartment(departmentRequest);
     }
+
 
     @GetMapping("/{id}")
     @Operation (summary = "get Department")
