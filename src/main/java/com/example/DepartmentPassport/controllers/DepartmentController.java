@@ -1,6 +1,5 @@
 package com.example.DepartmentPassport.controllers;
 
-import com.example.DepartmentPassport.model.dto.ClinicBranchResponse;
 import com.example.DepartmentPassport.model.dto.DepartmentRequest;
 import com.example.DepartmentPassport.model.dto.DepartmentResponse;
 import com.example.DepartmentPassport.service.DepartmentService;
@@ -59,7 +58,7 @@ public class DepartmentController {
     }
 
     @PostMapping("/addDepartmentToBranch{departmentId}/{branchId}")
-    @Operation (summary = "add branch to clinic")
+    @Operation (summary = "add department to branch")
     public DepartmentResponse addDepartmentToBranch (@PathVariable Long departmentId, @PathVariable Long branchId) {
         return departmentService.addDepartmentToBranch(departmentId, branchId);
     }

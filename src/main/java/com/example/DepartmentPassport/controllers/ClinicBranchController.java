@@ -37,7 +37,7 @@ public class ClinicBranchController {
         return clinicBranchService.updateClinicBranch(id, clinicBranchRequest);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @Operation (summary = "delete ClinicBranch")
     public void deleteClinicBranch(@PathVariable Long id) {
 

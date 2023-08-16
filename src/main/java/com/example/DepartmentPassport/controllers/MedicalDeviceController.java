@@ -2,7 +2,6 @@ package com.example.DepartmentPassport.controllers;
 
 import com.example.DepartmentPassport.model.dto.MedicalDeviceResponse;
 import com.example.DepartmentPassport.model.dto.MedicalDeviceRequest;
-import com.example.DepartmentPassport.model.dto.MedicalDeviceResponse;
 import com.example.DepartmentPassport.service.MedicalDeviceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -59,7 +58,7 @@ public class MedicalDeviceController {
     }
 
     @PostMapping("/addMedicalDeviceToDepartment/{medicalDeviceId}/{departmentId}")
-    @Operation (summary = "add branch to clinic")
+    @Operation (summary = "add medicalDevice to department")
     public MedicalDeviceResponse addMedicalDeviceToDepartment (@PathVariable Long medicalDeviceId, @PathVariable Long departmentId) {
         return medicalDeviceService.addMedicalDeviceToDepartment(medicalDeviceId, departmentId);
     }

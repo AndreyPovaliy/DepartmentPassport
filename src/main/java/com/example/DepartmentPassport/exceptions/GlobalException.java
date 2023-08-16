@@ -54,7 +54,7 @@ public class GlobalException {
 
         log.error("wrong data for parameter: {}", parameter);
         return  ResponseEntity.status(404)
-                .body(new ErrorMessage(String.format("wrong data for parametr: %s",parameter)));
+                .body(new ErrorMessage(String.format("wrong data for parameter: %s",parameter)));
     }
 
 

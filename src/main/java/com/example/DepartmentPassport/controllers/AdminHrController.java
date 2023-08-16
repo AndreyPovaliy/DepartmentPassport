@@ -2,7 +2,6 @@ package com.example.DepartmentPassport.controllers;
 
 import com.example.DepartmentPassport.model.dto.AdminHrRequest;
 import com.example.DepartmentPassport.model.dto.AdminHrResponse;
-import com.example.DepartmentPassport.model.dto.DepartmentResponse;
 import com.example.DepartmentPassport.service.AdminHrService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -50,7 +49,7 @@ public class AdminHrController {
     @Operation (summary = "get all adminHr")
     public Page<AdminHrResponse> getAllAdminHrs (@RequestParam (defaultValue = "1") Integer page,
                                                           @RequestParam (defaultValue = "10") Integer perPage,
-                                                          @RequestParam (defaultValue = "name") String sort,
+                                                          @RequestParam (defaultValue = "jobTitle") String sort,
                                                           @RequestParam (defaultValue = "ASC") Sort.Direction order,
                                                           @RequestParam (required = false) String filter
     ) {
@@ -59,7 +58,7 @@ public class AdminHrController {
     }
 
     @PostMapping("/addAdminHrToDepartment/{adminHrId}/{departmentId}")
-    @Operation (summary = "add branch to clinic")
+    @Operation (summary = "add adminHr to department")
     public AdminHrResponse addAdminHrToDepartment (@PathVariable Long adminHrId, @PathVariable Long departmentId) {
         return adminHrService.addAdminHrToDepartment(adminHrId, departmentId);
     }

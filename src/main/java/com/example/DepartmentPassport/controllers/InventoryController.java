@@ -6,6 +6,8 @@ import com.example.DepartmentPassport.service.InventoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name="ClinicHr")
@@ -35,10 +37,28 @@ public class InventoryController {
         return inventoryService.updateInventory(id, inventoryRequest);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @Operation (summary = "delete Inventory")
     public void deleteInventory(@PathVariable Long id) {
 
         inventoryService.deleteInventory(id);
+    }
+
+    @GetMapping("/allInventories")
+    @Operation (summary = "get all inventories")
+    public Page<InventoryResponse> getAllInventories (@RequestParam (defaultValue = "1") Integer page,
+                                                     @RequestParam (defaultValue = "10") Integer perPage,
+                                                     @RequestParam (defaultValue = "name") String sort,
+                                                     @RequestParam (defaultValue = "ASC") Sort.Direction order,
+                                                     @RequestParam (required = false) String filter
+    ) {
+
+        return inventoryService.getAllInventories (page,perPage,sort,order,filter);
+    }
+
+    @PostMapping("/addInventoryToRoom/{inventoryId}/{roomId}")
+    @Operation (summary = "add inventory to room")
+    public InventoryResponse addInventoryToRoom (@PathVariable Long inventoryId, @PathVariable Long roomId) {
+        return inventoryService.addInventoryToRoom(inventoryId, roomId);
     }
 }

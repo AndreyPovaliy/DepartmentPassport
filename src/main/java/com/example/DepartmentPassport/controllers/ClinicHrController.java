@@ -52,7 +52,7 @@ public class ClinicHrController {
     @Operation (summary = "get all clinicHr")
     public Page<ClinicHrResponse> getAllClinicHrs (@RequestParam (defaultValue = "1") Integer page,
                                                  @RequestParam (defaultValue = "10") Integer perPage,
-                                                 @RequestParam (defaultValue = "name") String sort,
+                                                 @RequestParam (defaultValue = "lastName") String sort,
                                                  @RequestParam (defaultValue = "ASC") Sort.Direction order,
                                                  @RequestParam (required = false) String filter
     ) {
@@ -61,7 +61,7 @@ public class ClinicHrController {
     }
 
     @PostMapping("/addClinicHrToDepartment/{clinicHrId}/{departmentId}")
-    @Operation (summary = "add branch to clinic")
+    @Operation (summary = "add clinicHr to {department")
     public ClinicHrResponse addClinicHrToDepartment (@PathVariable Long clinicHrId, @PathVariable Long departmentId) {
         return clinicHrService.addClinicHrToDepartment(clinicHrId, departmentId);
     }

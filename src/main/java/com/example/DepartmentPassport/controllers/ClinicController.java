@@ -38,7 +38,7 @@ public class ClinicController {
         return clinicService.updateClinic(id, ClinicRequest);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @Operation(summary = "delete Clinic")
     public void deleteClinic(@PathVariable Long id) {
 

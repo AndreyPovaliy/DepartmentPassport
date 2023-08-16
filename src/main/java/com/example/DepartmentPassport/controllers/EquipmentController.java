@@ -59,8 +59,10 @@ public class EquipmentController {
     }
 
     @PostMapping("/addEquipmentToDepartment/{equipmentId}/{departmentId}")
-    @Operation (summary = "add branch to clinic")
+    @Operation (summary = "add equipment to department")
     public EquipmentResponse addEquipmentToDepartment (@PathVariable Long equipmentId, @PathVariable Long departmentId) {
         return equipmentService.addEquipmentToDepartment(equipmentId, departmentId);
     }
+
+
 }

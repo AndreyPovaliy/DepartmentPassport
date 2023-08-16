@@ -2,7 +2,6 @@ package com.example.DepartmentPassport.controllers;
 
 import com.example.DepartmentPassport.model.dto.RoomResponse;
 import com.example.DepartmentPassport.model.dto.RoomRequest;
-import com.example.DepartmentPassport.model.dto.RoomResponse;
 import com.example.DepartmentPassport.service.RoomService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -59,7 +58,7 @@ public class RoomController {
     }
 
     @PostMapping("/addRoomToDepartment/{roomId}/{departmentId}")
-    @Operation (summary = "add branch to clinic")
+    @Operation (summary = "add room to department")
     public RoomResponse addRoomToDepartment (@PathVariable Long roomId, @PathVariable Long departmentId) {
         return roomService.addRoomToDepartment(roomId, departmentId);
     }
