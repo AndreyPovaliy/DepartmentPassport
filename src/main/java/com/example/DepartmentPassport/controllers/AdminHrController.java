@@ -18,34 +18,34 @@ public class AdminHrController {
     private final AdminHrService adminHrService;
 
 
-    @PostMapping
+    @PostMapping("/AdminHr")
     @Operation(summary = "create AdminHr")
     public AdminHrResponse createAdminHr(@RequestBody AdminHrRequest adminHrRequest) {
 
         return adminHrService.createAdminHr(adminHrRequest);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/AdminHr/{id}")
     @Operation (summary = "get AdminHr")
     public AdminHrResponse readAdminHr(@PathVariable Long id) {
 
         return adminHrService.getAdminHr(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/AdminHr/{id}")
     @Operation (summary = "update AdminHr")
     public AdminHrResponse updateAdminHr(@PathVariable Long id, @RequestBody AdminHrRequest adminHrRequest) {
         return adminHrService.updateAdminHr(id, adminHrRequest);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/AdminHr/{id}")
     @Operation (summary = "delete AdminHr")
     public void deleteAdminHr(@PathVariable Long id) {
 
         adminHrService.deleteAdminHr(id);
     }
 
-    @GetMapping("/allAdminHrs")
+    @GetMapping("/AdminHr/allAdminHrs")
     @Operation (summary = "get all adminHr")
     public Page<AdminHrResponse> getAllAdminHrs (@RequestParam (defaultValue = "1") Integer page,
                                                           @RequestParam (defaultValue = "10") Integer perPage,
@@ -57,7 +57,7 @@ public class AdminHrController {
         return adminHrService.getAllAdminHrs (page,perPage,sort,order,filter);
     }
 
-    @PostMapping("/addAdminHrToDepartment/{adminHrId}/{departmentId}")
+    @PostMapping("/AdminHr/addAdminHrToDepartment/{adminHrId}/{departmentId}")
     @Operation (summary = "add adminHr to department")
     public AdminHrResponse addAdminHrToDepartment (@PathVariable Long adminHrId, @PathVariable Long departmentId) {
         return adminHrService.addAdminHrToDepartment(adminHrId, departmentId);
